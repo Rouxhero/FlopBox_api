@@ -1,7 +1,7 @@
 package com.flopbox.server;
 
-import static com.flopbox.server.CSVDataBase.USER_DB;
-import static com.flopbox.server.CSVDataBase.USER_FILE;
+import static com.flopbox.app.util.server.CSVDataBase.USER_DB;
+import static com.flopbox.app.util.server.CSVDataBase.USER_FILE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -10,11 +10,13 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.List;
 
+import com.flopbox.app.util.server.CSVDataBase;
+import com.flopbox.app.util.server.ServerCredential;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.flopbox.exception.ControllerException;
-import com.flopbox.web.WebRequest;
+import com.flopbox.app.util.exception.ControllerException;
+import com.flopbox.app.util.web.WebRequest;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 

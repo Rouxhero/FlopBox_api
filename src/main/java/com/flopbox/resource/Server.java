@@ -1,7 +1,7 @@
 package com.flopbox.resource;
 
-import com.flopbox.controller.core.ControllerFactory;
-import com.flopbox.web.WebRequest;
+import com.flopbox.app.controller.core.ControllerFactory;
+import com.flopbox.app.util.web.WebRequest;
 
 import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.DELETE;
@@ -29,9 +29,12 @@ public class Server extends AbstractResources {
 	}
 
 	@POST
-	public Response addServer(@BeanParam WebRequest request, @FormParam("host") String host,
-			@FormParam("port") String port) throws Exception {
+	public Response addServer(@BeanParam WebRequest request,
+							  @FormParam("alias") String alias,
+							  @FormParam("host") String host,
+							  @FormParam("port") String port) throws Exception {
 		request.read();
+		request.set("alias", alias);
 		request.set("host", host);
 		request.set("port", port);
 		return controller.execute("addServer", request, true);

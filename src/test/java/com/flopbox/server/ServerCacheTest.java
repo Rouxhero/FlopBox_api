@@ -8,12 +8,13 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Base64;
 
+import com.flopbox.app.util.server.ServerCache;
 import org.apache.commons.net.ftp.FTPFile;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.flopbox.web.WebRequest;
-import com.flopbox.web.WebResponse;
+import com.flopbox.app.util.web.WebRequest;
+import com.flopbox.app.util.web.WebResponse;
 
 public class ServerCacheTest {
 

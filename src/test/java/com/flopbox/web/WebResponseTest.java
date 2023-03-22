@@ -3,6 +3,7 @@ package com.flopbox.web;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import com.flopbox.app.util.web.WebResponse;
 import org.junit.Test;
 
 import jakarta.ws.rs.core.MediaType;

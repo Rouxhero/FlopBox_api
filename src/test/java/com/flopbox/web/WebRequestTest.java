@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
+import com.flopbox.app.util.web.WebRequest;
 import org.junit.Test;
 
 public class WebRequestTest {

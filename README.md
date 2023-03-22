@@ -22,9 +22,6 @@ Cette API a pour fonction de regrouper des serveurs FTP et d'offrir un accès à
  
 Elle permet également  d'uploader et de télécharger des fichiers sur les différents serveurs.
 
-# Demo
-
-La demo est dans le dossier `doc\`
 
 
 # UML

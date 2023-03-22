@@ -2,6 +2,7 @@ package com.flopbox.util;
 
 import static org.junit.Assert.assertEquals;
 
+import com.flopbox.app.util.tools.TypeUtils;
 import org.junit.Test;
 
 import jakarta.ws.rs.core.MediaType;

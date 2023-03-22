@@ -2,12 +2,13 @@ package com.flopbox.controller;
 
 import java.io.IOException;
 
+import com.flopbox.app.controller.GuestController;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.flopbox.controller.core.Controller;
-import com.flopbox.server.CSVDataBase;
-import com.flopbox.web.WebRequest;
+import com.flopbox.app.controller.core.Controller;
+import com.flopbox.app.util.server.CSVDataBase;
+import com.flopbox.app.util.web.WebRequest;
 
 import jakarta.ws.rs.core.Response;
 

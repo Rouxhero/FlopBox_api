@@ -1,9 +1,11 @@
 package com.flopbox.controller.core;
 
+import com.flopbox.app.controller.core.AbstractController;
+import com.flopbox.app.controller.core.Controller;
 import org.junit.Test;
 
-import com.flopbox.web.WebRequest;
-import com.flopbox.web.WebResponse;
+import com.flopbox.app.util.web.WebRequest;
+import com.flopbox.app.util.web.WebResponse;
 
 import jakarta.ws.rs.core.Response;
 

@@ -5,10 +5,11 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.List;
 
+import com.flopbox.app.util.server.CSVDataBase;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.flopbox.exception.ControllerException;
+import com.flopbox.app.util.exception.ControllerException;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 

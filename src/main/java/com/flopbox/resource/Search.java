@@ -1,7 +1,7 @@
 package com.flopbox.resource;
 
-import com.flopbox.controller.core.ControllerFactory;
-import com.flopbox.web.WebRequest;
+import com.flopbox.app.controller.core.ControllerFactory;
+import com.flopbox.app.util.web.WebRequest;
 
 import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.GET;

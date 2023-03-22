@@ -2,11 +2,12 @@ package com.flopbox.controller.core;
 
 import static org.junit.Assert.assertEquals;
 
+import com.flopbox.app.controller.core.Controller;
 import org.junit.Test;
 
-import com.flopbox.controller.GuestController;
-import com.flopbox.controller.ServerController;
-import com.flopbox.controller.UploadController;
+import com.flopbox.app.controller.GuestController;
+import com.flopbox.app.controller.ServerController;
+import com.flopbox.app.controller.UploadController;
 
 public class ControllerFactoryTest {
 

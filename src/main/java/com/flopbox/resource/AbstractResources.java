@@ -1,7 +1,7 @@
 package com.flopbox.resource;
 
-import com.flopbox.controller.core.Controller;
-import com.flopbox.controller.core.ControllerFactory;
+import com.flopbox.app.controller.core.Controller;
+import com.flopbox.app.controller.core.ControllerFactory;
 
 /**
  * <h1>Class AbstractResources</h1>
