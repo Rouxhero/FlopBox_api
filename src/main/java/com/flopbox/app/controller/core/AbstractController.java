@@ -64,6 +64,7 @@ public abstract class AbstractController implements Controller {
 			}
 		} catch (Exception e) {
 			Logs.display(Logs.ERROR, e.getMessage());
+			e.printStackTrace();
 			return WebResponse.buildResponse(Response.Status.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 	}
