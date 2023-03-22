@@ -1,6 +1,7 @@
 package com.flopbox.resource;
 
 import com.flopbox.app.controller.core.ControllerFactory;
+import com.flopbox.app.util.tools.Logs;
 import com.flopbox.app.util.web.WebRequest;
 
 import jakarta.ws.rs.BeanParam;
@@ -37,6 +38,7 @@ public class Server extends AbstractResources {
 		request.set("alias", alias);
 		request.set("host", host);
 		request.set("port", port);
+		Logs.display(Logs.DEBUG, "Post Body: alias="+alias+"&host="+host+"&port="+port);
 		return controller.execute("addServer", request, true);
 	}
 

@@ -190,4 +190,8 @@ public class WebRequest {
 		else
 			content.put("uri", "");
 	}
+
+	public String getUri() {
+		return content.get("uri");
+	}
 }

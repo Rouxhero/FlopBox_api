@@ -47,7 +47,7 @@ public abstract class AbstractController implements Controller {
 	@Override
 	public Response execute(String command, Object request, boolean need_auth) throws Exception {
 		Method method = methods.get(command);
-		Logs.display(Logs.DEBUG, "Receive request : " + ((WebRequest) request).get("uri"));
+		Logs.display(Logs.DEBUG, "Receive request : " + ((WebRequest) request).getUri());
 		if (need_auth) {
 			if (!ServerCredential.check_auth((WebRequest) request)) {
 				Logs.display(Logs.ERROR, ServerCredential.AUTH_FAIL + " for key " + ((WebRequest) request).get("key"));

@@ -1,6 +1,7 @@
 package com.flopbox.resource;
 
 import com.flopbox.app.controller.core.ControllerFactory;
+import com.flopbox.app.util.tools.Logs;
 import com.flopbox.app.util.web.WebRequest;
 
 import jakarta.ws.rs.BeanParam;
@@ -43,6 +44,7 @@ public class Guest extends AbstractResources {
 		request.read();
 		request.set("username", username);
 		request.set("password", password);
+		Logs.display(Logs.DEBUG, "Post Body: username=" + username + "&password=" + password);
 		return controller.execute("loginUser", request, false);
 
 	}
@@ -64,8 +66,8 @@ public class Guest extends AbstractResources {
 		request.set("email", email);
 		request.set("username", username);
 		request.set("password", password);
+		Logs.display(Logs.DEBUG, "Post Body: username=" + username + "&password=" + password+ "&email=" + email);
 		return controller.execute("registerUser", request, false);
-
 	}
 
 }
