@@ -59,7 +59,7 @@ public class CSVDataBase {
 	 */
 	private static CSVWriter create_writer(String csvFilePath, boolean append) throws IOException {
 		return new CSVWriter(new FileWriter(csvFilePath, append), ',', ICSVWriter.NO_QUOTE_CHARACTER,
-				ICSVWriter.DEFAULT_ESCAPE_CHARACTER, ICSVWriter.DEFAULT_LINE_END);
+				ICSVWriter.NO_QUOTE_CHARACTER, ICSVWriter.DEFAULT_LINE_END);
 	}
 
 	/**
@@ -163,6 +163,7 @@ public class CSVDataBase {
 	 */
 	public void insertRecord(String[] record) throws IOException {
 		CSVWriter writer = create_writer(csvFilePath, true);
+		record[0] = "\n" + record[0];
 		writer.writeNext(record);
 		writer.close();
 	}

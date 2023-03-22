@@ -35,7 +35,7 @@ public class ServerUtils {
 	 * @throws CsvException
 	 */
 	public static void addServer(WebRequest request) throws IOException, ControllerException, CsvException {
-		int line_number = check_serverExist(request.get("alias"));
+		int line_number = check_serverExist(request);
 		update_user_server(request, String.valueOf(line_number));
 	}
 
@@ -47,12 +47,12 @@ public class ServerUtils {
 	 * @throws ControllerException
 	 * @throws CsvValidationException
 	 */
-	private static int check_serverExist(String line) throws IOException, ControllerException, CsvValidationException {
+	private static int check_serverExist(WebRequest request) throws IOException, ControllerException, CsvValidationException {
 		CSVDataBase csvDataBase = new CSVDataBase(CSVDataBase.SERVER_FILE, CSVDataBase.SERVER_DB);
-		List<String[]> data = csvDataBase.getRecordsWhere("alias", line);
+		List<String[]> data = csvDataBase.getRecordsWhere("alias", request.get("alias"));
 		if (data.size() == 0) {
 			int id = csvDataBase.getRecords().size() - 1;
-			csvDataBase.insertRecord(new String[] { String.valueOf(id), line, "21" });
+			csvDataBase.insertRecord(new String[] { String.valueOf(id), request.get("alias"),request.get("host"), request.get("port") });
 			return id;
 		}
 		return Integer.parseInt(data.get(0)[0]);
