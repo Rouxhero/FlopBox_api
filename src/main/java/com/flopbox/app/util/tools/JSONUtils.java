@@ -1,8 +1,12 @@
 package com.flopbox.app.util.tools;
 
+import com.google.gson.JsonArray;
 import org.apache.commons.net.ftp.FTPFile;
 
 import com.google.gson.JsonObject;
+import org.glassfish.grizzly.compression.lzma.impl.Base;
+
+import java.util.Base64;
 
 /**
  * <h1>Class JSONUtils</h1>
@@ -23,14 +27,15 @@ public class JSONUtils {
 	 * @param file       le fichier
 	 * @param uniqueId   l'identifiant unique du fichier
 	 */
-	public static void extract_contentJson(JsonObject jsonObject, FTPFile file, String uniqueId) {
+	public static void extract_contentJson(JsonArray jsonArray, FTPFile file, String uniqueId) {
 		JsonObject fileJson = new JsonObject();
 		fileJson.addProperty("id", uniqueId);
 		fileJson.addProperty("name", file.getName());
+		fileJson.addProperty("path", FTPUtils.decode_path(uniqueId));
 		fileJson.addProperty("size", file.getSize());
 		fileJson.addProperty("type", file.getType());
 		fileJson.addProperty("date", file.getTimestamp().getTime().toString());
-		jsonObject.add(file.getName(), fileJson);
+		jsonArray.add(fileJson);
 	}
 
 	/**
@@ -41,10 +46,12 @@ public class JSONUtils {
 	 */
 	public static String listContentJson(FTPFile[] files, String root) {
 		JsonObject jsonObject = new JsonObject();
+		JsonArray jsonArray = new JsonArray();
 		for (FTPFile file : files) {
 			String uniqueID = FTPUtils.generateUniqueID(root, file);
-			extract_contentJson(jsonObject, file, uniqueID);
+			extract_contentJson(jsonArray, file, uniqueID);
 		}
+		jsonObject.add("content", jsonArray);
 		return jsonObject.toString();
 	}
 }

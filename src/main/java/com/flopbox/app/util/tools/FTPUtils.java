@@ -60,7 +60,7 @@ public class FTPUtils {
 	 * @param id id unique
 	 * @return chemin du fichier FTP
 	 */
-	private static String decode_path(String id) {
+	public static String decode_path(String id) {
 		String path = id;
 		if (path == null)
 			return "/";
