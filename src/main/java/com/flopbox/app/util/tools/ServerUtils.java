@@ -86,7 +86,7 @@ public class ServerUtils {
 		List<String[]> data = csvDataBase.getRecordsWhere("id", id);
 		if (data.size() == 0)
 			throw new FTPException("id not found");
-		return data.get(0)[1] + ":" + data.get(0)[2];
+		return data.get(0)[2] + ":" + data.get(0)[3];
 	}
 
 	/**
