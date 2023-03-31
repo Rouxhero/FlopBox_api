@@ -163,6 +163,8 @@ public class CSVDataBase {
 	 */
 	public void insertRecord(String[] record) throws IOException {
 		CSVWriter writer = create_writer(csvFilePath, true);
+		if (record.length != USER_DB.length && record.length != SERVER_DB.length)
+			throw new IllegalArgumentException("Invalid record length: " + record.length);
 		writer.writeNext(record);
 		writer.close();
 	}
