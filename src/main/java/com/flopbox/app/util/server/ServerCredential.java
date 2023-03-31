@@ -108,7 +108,7 @@ public class ServerCredential {
 			throw new ControllerException("Username already exists");
 		String hashPass = DigestUtils.sha256Hex(password);
 		String hash = DigestUtils.sha256Hex(username + password + email);
-		csvDataBase.insertRecord(new String[] { username, hashPass, email, hash, "0|" });
+		csvDataBase.insertRecord(new String[] { username, hashPass, email, hash, "|0" });
 		return true;
 	}
 
