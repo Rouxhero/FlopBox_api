@@ -163,7 +163,6 @@ public class CSVDataBase {
 	 */
 	public void insertRecord(String[] record) throws IOException {
 		CSVWriter writer = create_writer(csvFilePath, true);
-		record[0] = "\n" + record[0];
 		writer.writeNext(record);
 		writer.close();
 	}
