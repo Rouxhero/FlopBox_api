@@ -2,6 +2,3 @@ id,alias,host,port
 0,Coffee,ftp.givemecoffee.ninja,21
 1,Free,ftp.free.fr,21
 2,Ubuntu,ftp.ubuntu.com,21
-3,API Localhost,localhost,21
-
-4,localhost,null,21
