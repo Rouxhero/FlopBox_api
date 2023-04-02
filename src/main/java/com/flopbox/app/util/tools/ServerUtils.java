@@ -30,13 +30,15 @@ public class ServerUtils {
 	 * Ajoute un serveur à l'utilisateur
 	 *
 	 * @param request
+	 * @return
 	 * @throws IOException
 	 * @throws ControllerException
 	 * @throws CsvException
 	 */
-	public static void addServer(WebRequest request) throws IOException, ControllerException, CsvException {
+	public static String addServer(WebRequest request) throws IOException, ControllerException, CsvException {
 		int line_number = check_serverExist(request);
 		update_user_server(request, String.valueOf(line_number));
+		return String.valueOf(line_number);
 	}
 
 	/**

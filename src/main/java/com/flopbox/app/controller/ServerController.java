@@ -38,8 +38,8 @@ public class ServerController extends AbstractController {
 	public WebResponse addServer(WebRequest request) {
 		WebResponse response = new WebResponse();
 		try {
-			ServerUtils.addServer(request);
-			response.setContent("Server added");
+			String id = ServerUtils.addServer(request);
+			response.setContent(id);
 			response.setStatus(Response.Status.OK);
 		} catch (IOException | ControllerException | CsvException e) {
 			response.setStatus(Response.Status.INTERNAL_SERVER_ERROR);
