@@ -48,6 +48,9 @@ public class Logs {
 		case ERROR:
 			display("[ERROR] " + msg);
 			break;
+		default:
+			display("[UNKNOWN] " + msg);
+			break;
 		}
 	}
 

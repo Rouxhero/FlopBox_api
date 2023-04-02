@@ -194,4 +194,7 @@ public class WebRequest {
 	public String getUri() {
 		return content.get("uri");
 	}
+	public Map<String, String> getContent() {
+		return content;
+	}
 }

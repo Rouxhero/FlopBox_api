@@ -2,6 +2,7 @@ package com.flopbox.app.controller.core;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.flopbox.app.util.exception.ControllerException;
 import com.flopbox.app.util.server.ServerCredential;
@@ -47,7 +48,12 @@ public abstract class AbstractController implements Controller {
 	@Override
 	public Response execute(String command, Object request, boolean need_auth) throws Exception {
 		Method method = methods.get(command);
-		Logs.display(Logs.DEBUG, "Receive request : " + ((WebRequest) request).getUri());
+		WebRequest webRequest = (WebRequest) request;
+		Logs.display(Logs.DEBUG, "Receive request : " + webRequest.getUri());
+		Map<String, String> params = webRequest.getContent();
+		for (String key : params.keySet()) {
+			Logs.display(Logs.DEBUG, "Param : " + key + " = " + params.get(key));
+		}
 		if (need_auth) {
 			if (!ServerCredential.check_auth((WebRequest) request)) {
 				Logs.display(Logs.ERROR, ServerCredential.AUTH_FAIL + " for key " + ((WebRequest) request).get("key"));
