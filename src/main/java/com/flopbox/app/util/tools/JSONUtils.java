@@ -34,7 +34,7 @@ public class JSONUtils {
 		fileJson.addProperty("path", FTPUtils.decode_path(uniqueId));
 		fileJson.addProperty("size", file.getSize());
 		fileJson.addProperty("type", file.getType());
-		fileJson.addProperty("date", file.getTimestamp().getTime().toString());
+		fileJson.addProperty("date", String.valueOf(file.getTimestamp().getTime()));
 		jsonArray.add(fileJson);
 	}
 
