@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import com.flopbox.app.util.tools.Logs;
 import org.apache.commons.net.ftp.FTPClient;
 
 import com.flopbox.app.controller.core.AbstractController;
@@ -178,10 +179,10 @@ public class ContentController extends AbstractController {
 
 	public WebResponse uploadFile(WebRequest request) {
 		WebResponse response = new WebResponse();
+		Logs.display("File uploaded : " + FTPUtils.decode_path(request.get("fid")));
 		try {
 			FTPClient client = FTPUtils.init_auth(request);
 			FTPUtils.overrideFile(client, request.getFile(), request.getFileDetails(),FTPUtils.decode_path(request.get("fid")));
-
 			response.setStatus(Response.Status.OK);
 			client.disconnect();
 		} catch (IOException | FTPException e) {
