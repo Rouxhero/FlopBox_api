@@ -180,7 +180,8 @@ public class ContentController extends AbstractController {
 		WebResponse response = new WebResponse();
 		try {
 			FTPClient client = FTPUtils.init_auth(request);
-			FTPUtils.uploadFile(client,request.getFile(),request.getFileDetails());
+			FTPUtils.overrideFile(client, request.getFile(), request.getFileDetails(),FTPUtils.decode_path(request.get("fid")));
+
 			response.setStatus(Response.Status.OK);
 			client.disconnect();
 		} catch (IOException | FTPException e) {
