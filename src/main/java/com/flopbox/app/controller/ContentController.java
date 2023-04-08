@@ -176,4 +176,18 @@ public class ContentController extends AbstractController {
 		return response;
 	}
 
+	public WebResponse uploadFile(WebRequest request) {
+		WebResponse response = new WebResponse();
+		try {
+			FTPClient client = FTPUtils.init_auth(request);
+			FTPUtils.uploadFile(client,request.getFile(),request.getFileDetails());
+			response.setStatus(Response.Status.OK);
+			client.disconnect();
+		} catch (IOException | FTPException e) {
+			response.setStatus(Response.Status.INTERNAL_SERVER_ERROR);
+			response.setContent(e.getMessage());
+		}
+		return response;
+	}
+
 }
