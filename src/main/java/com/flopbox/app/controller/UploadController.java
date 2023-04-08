@@ -3,6 +3,7 @@ package com.flopbox.app.controller;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.flopbox.app.util.tools.Logs;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -50,12 +51,13 @@ public class UploadController extends AbstractController {
 	public WebResponse uploadFile(WebRequest request) {
 		InputStream fileContent = request.getFile();
 		FormDataContentDisposition fileDetails = request.getFileDetails();
+		Logs.display("File uploaded : " + fileDetails.getFileName());
 		WebResponse response = new WebResponse();
 		try {
 			FTPClient client = FTPUtils.init_auth(request);
 			FTPUtils.changeDirectory(request, client);
 			client.setFileType(FTP.BINARY_FILE_TYPE);
-			FTPUtils.uploadFile(client, fileContent, fileDetails);
+			FTPUtils.overrideFile(client, fileContent, fileDetails,FTPUtils.decode_path(request.get("fid")));
 			response.setStatus(Response.Status.OK);
 			client.disconnect();
 		} catch (IOException | FTPException e) {

@@ -241,4 +241,10 @@ public class FTPUtils {
 			throw new FTPException(
 					"Failed to upload file " + fileDetails.getFileName() + " => " + client.getReplyString());
 	}
+
+	public static void overrideFile(FTPClient client, InputStream fileContent, FormDataContentDisposition fileDetails, String path) throws FTPException, IOException {
+		if (!client.storeFile(path, fileContent))
+			throw new FTPException(
+					"Failed to upload file " + path + " => " + client.getReplyString());
+	}
 }
