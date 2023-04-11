@@ -9,6 +9,6 @@ public class Status {
 
     @GET
     public String status() {
-        return "<h1>Welcome on flopbox api!</h1><br><h2>Server is running</h2>";
+        return "<div style='background:#00000;color:#FFFFF'><h1>Welcome on flopbox api!</h1><br><h2>Server is running</h2></div>";
     }
 }
