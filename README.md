@@ -3,7 +3,8 @@
 </p>
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Rouxhero/FlopBox_api?style=plastic)
-
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Rouxhero/FlopBox_api?display_name=tag&style=plastic)
+![PingPong status](https://img.shields.io/pingpong/status/sp_68ccf5a6b18641939e8632283f1be487?label=public%20api%20)
 # Sommaire
 - [Sommaire](#sommaire)
 - [Liste des paths](#liste-des-paths)
