@@ -1,10 +1,12 @@
 <p align="center">
 <img src="https://see.fontimg.com/api/renderfont4/1GVgg/eyJyIjoiZnMiLCJoIjoxMTYsInciOjEwMDAsImZzIjoxMTYsImZnYyI6IiM5ODc0MDgiLCJiZ2MiOiIjRkZGRkZGIiwidCI6MX0/RmxvcEJveA/kingsman-demo.png">
 </p>
+<p align="center">
+<img src="https://img.shields.io/github/languages/code-size/Rouxhero/FlopBox_api?style=plastic">
+<img src="https://img.shields.io/github/v/release/Rouxhero/FlopBox_api?display_name=tag&style=plastic">
+<img src="https://img.shields.io/website?down_color=red&down_message=error&label=Public%20api%20state%20&up_message=online&url=http%3A%2F%2Fapi.givemecoffee.ninja%3A8080%2Fstatus">
+</p>
 
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Rouxhero/FlopBox_api?style=plastic)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Rouxhero/FlopBox_api?display_name=tag&style=plastic)
-![PingPong status](https://img.shields.io/pingpong/status/sp_68ccf5a6b18641939e8632283f1be487?label=public%20api%20)
 # Sommaire
 - [Sommaire](#sommaire)
 - [Liste des paths](#liste-des-paths)
