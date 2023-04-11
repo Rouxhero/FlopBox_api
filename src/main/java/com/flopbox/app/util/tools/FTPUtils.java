@@ -152,7 +152,7 @@ public class FTPUtils {
 			response.setContent(XMLUtils.listContentXML(files, client.printWorkingDirectory()));
 		} else {
 			response.setType(MediaType.APPLICATION_JSON);
-			response.setContent(JSONUtils.listContentJson(files, client.printWorkingDirectory()));
+			response.setContent(JSONUtils.listContentJson(files, client));
 		}
 	}
 

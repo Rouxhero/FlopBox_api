@@ -1,12 +1,15 @@
 package com.flopbox.app.util.tools;
 
 import com.google.gson.JsonArray;
+import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
 import com.google.gson.JsonObject;
 import org.glassfish.grizzly.compression.lzma.impl.Base;
 
+import java.io.IOException;
 import java.util.Base64;
+import java.util.Calendar;
 
 /**
  * <h1>Class JSONUtils</h1>
@@ -34,7 +37,8 @@ public class JSONUtils {
 		fileJson.addProperty("path", FTPUtils.decode_path(uniqueId));
 		fileJson.addProperty("size", file.getSize());
 		fileJson.addProperty("type", file.getType());
-		fileJson.addProperty("date", String.valueOf(file.getTimestamp().getTimeInMillis()));
+		Calendar calendar = file.getTimestamp();
+		fileJson.addProperty("date", String.valueOf(calendar.getTimeInMillis()));
 		jsonArray.add(fileJson);
 	}
 
@@ -44,11 +48,28 @@ public class JSONUtils {
 	 * @param files le contenu du dossier
 	 * @param root  le chemin du dossier
 	 */
-	public static String listContentJson(FTPFile[] files, String root) {
+	public static String listContentJson(FTPFile[] files, FTPClient client) throws IOException {
 		JsonObject jsonObject = new JsonObject();
 		JsonArray jsonArray = new JsonArray();
+		String root = client.printWorkingDirectory();
 		for (FTPFile file : files) {
+
 			String uniqueID = FTPUtils.generateUniqueID(root, file);
+
+			String date = client.getModificationTime(FTPUtils.decode_path(uniqueID));
+			if (date != null) {
+				Calendar cal = Calendar.getInstance();
+				String year = date.substring(0, 4); // 2018
+				String month = date.substring(4, 6); // 01
+				String day = date.substring(6, 8);
+				String hour = date.substring(8, 10);
+				String minute = date.substring(10, 12);
+				String second = date.substring(12, 14);
+				System.out.println(year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second);
+				cal.set(Integer.parseInt(year), Integer.parseInt(month)-1, Integer.parseInt(day), Integer.parseInt(hour),
+						Integer.parseInt(minute), Integer.parseInt(second));
+				file.setTimestamp(cal);
+			}
 			extract_contentJson(jsonArray, file, uniqueID);
 		}
 		jsonObject.add("content", jsonArray);
