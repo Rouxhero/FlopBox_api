@@ -1,5 +1,0 @@
-id,alias,host,port
-0,ubuntu,ftp.ubuntu.com,21
-1,free,ftp.free.fr,21
-2,localhost,localhost,21
-3,givemecoffee,ftp.givemecoffee.ninja,21
