@@ -84,9 +84,19 @@ public class JSONUtils {
 			JsonArray jsonArray = new JsonArray();
 			for (String value : res.get(key)) {
 				JsonObject jsonObject1 = new JsonObject();
+				value = value.replaceAll("//","/");
 				String uniqueID = Base64.getEncoder().encodeToString(value.getBytes());
 				jsonObject1.addProperty("path", value);
 				jsonObject1.addProperty("id", uniqueID);
+				JsonArray jsonArray1 = new JsonArray();
+				String[] split = value.split("/");
+				for (String s : split) {
+					if (s.equals(""))
+						continue;
+					s = "/" + s;
+					jsonArray1.add(Base64.getEncoder().encodeToString(s.getBytes()));
+				}
+				jsonObject1.add("fullPath", jsonArray1);
 				jsonArray.add(jsonObject1);
 			}
 			jsonObject.add(key, jsonArray);
