@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import com.flopbox.app.util.tools.JSONUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
@@ -63,14 +64,14 @@ public class SearchController extends AbstractController {
 
 	private void convertData(WebRequest request, WebResponse response, Map<String, List<String>> res)
 			throws ParserConfigurationException {
-		if ((request.isAcceptedType(MediaType.TEXT_XML) || request.isAcceptedType(MediaType.APPLICATION_XML)
-				&& !request.isAcceptedType(MediaType.APPLICATION_JSON))) {
-			response.setContent(XMLUtils.mapToXML(res));
-			response.setType(MediaType.APPLICATION_XML);
-		} else {
-//            response.setContent(JSONUtils.mapToJson(res));
+//		if ((request.isAcceptedType(MediaType.TEXT_XML) || request.isAcceptedType(MediaType.APPLICATION_XML)
+//				&& !request.isAcceptedType(MediaType.APPLICATION_JSON))) {
+//			response.setContent(XMLUtils.mapToXML(res));
+//			response.setType(MediaType.APPLICATION_XML);
+//		} else {
+            response.setContent(JSONUtils.mapToJson(res));
 			response.setType(MediaType.APPLICATION_JSON);
-		}
+//		}
 	}
 
 	public WebResponse search(WebRequest request)

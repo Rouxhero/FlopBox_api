@@ -10,6 +10,8 @@ import org.glassfish.grizzly.compression.lzma.impl.Base;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <h1>Class JSONUtils</h1>
@@ -73,6 +75,22 @@ public class JSONUtils {
 			extract_contentJson(jsonArray, file, uniqueID);
 		}
 		jsonObject.add("content", jsonArray);
+		return jsonObject.toString();
+	}
+
+	public static Object mapToJson(Map<String, List<String>> res) {
+		JsonObject jsonObject = new JsonObject();
+		for (String key : res.keySet()) {
+			JsonArray jsonArray = new JsonArray();
+			for (String value : res.get(key)) {
+				JsonObject jsonObject1 = new JsonObject();
+				String uniqueID = Base64.getEncoder().encodeToString(value.getBytes());
+				jsonObject1.addProperty("path", value);
+				jsonObject1.addProperty("id", uniqueID);
+				jsonArray.add(jsonObject1);
+			}
+			jsonObject.add(key, jsonArray);
+		}
 		return jsonObject.toString();
 	}
 }
