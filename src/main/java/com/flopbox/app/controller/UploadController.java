@@ -37,7 +37,6 @@ public class UploadController extends AbstractController {
 		try {
 			FTPClient client = FTPUtils.init_auth(request);
 			FTPUtils.changeDirectory(request, client);
-			client.setFileType(FTP.BINARY_FILE_TYPE);
 			response.setContent(FTPUtils.createFolder(request, client));
 			response.setStatus(Response.Status.OK);
 			client.disconnect();

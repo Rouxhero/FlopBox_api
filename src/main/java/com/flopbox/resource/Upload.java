@@ -41,15 +41,11 @@ public class Upload extends AbstractResources {
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response create(@BeanParam WebRequest request, @FormDataParam("file") InputStream uploadedInputStream,
-			@FormDataParam("file") FormDataContentDisposition fileDetails, @FormParam("name") String name)
+			@FormDataParam("file") FormDataContentDisposition fileDetails)
 			throws Exception {
 		request.read();
 		request.addFile(uploadedInputStream, fileDetails);
-		request.set("name", name);
-		if (uploadedInputStream != null)
-			return controller.execute("uploadFile", request, true);
-		else
-			return controller.execute("createFolder", request, true);
+		return controller.execute("uploadFile", request, true);
 	}
 
 	/**
@@ -66,14 +62,32 @@ public class Upload extends AbstractResources {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createOn(@BeanParam WebRequest request, @FormDataParam("file") InputStream uploadedInputStream,
-			@FormDataParam("file") FormDataContentDisposition fileDetails, @FormParam("name") String name)
+			@FormDataParam("file") FormDataContentDisposition fileDetails)
 			throws Exception {
 		request.read();
 		request.addFile(uploadedInputStream, fileDetails);
+		return controller.execute("uploadFile", request, true);
+	}
+
+	/**
+	 * Créer un dossier dans fid
+	 *
+	 * @param request la requête HTTP
+	 * @param name    Le nom du dossier => Si création de dossier
+	 * @throws Exception
+	 */
+	@POST
+	@Path("/f/{fid}")
+	public Response createFolder(@BeanParam WebRequest request, @FormParam("name") String name) throws Exception {
+		request.read();
 		request.set("name", name);
-		if (uploadedInputStream != null)
-			return controller.execute("uploadFile", request, true);
-		else
-			return controller.execute("createFolder", request, true);
+		return controller.execute("createFolder", request, true);
+	}
+	@POST
+	@Path("/f/")
+	public Response createFolderRoot(@BeanParam WebRequest request, @FormParam("name") String name) throws Exception {
+		request.read();
+		request.set("name", name);
+		return controller.execute("createFolder", request, true);
 	}
 }
