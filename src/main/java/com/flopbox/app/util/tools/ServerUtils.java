@@ -3,6 +3,7 @@ package com.flopbox.app.util.tools;
 import static com.flopbox.app.util.server.ServerCredential.update_user_server;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import com.flopbox.app.util.exception.ControllerException;
@@ -131,5 +132,21 @@ public class ServerUtils {
 			serverJson.addProperty("port", record[3]);
 			serversArray.add(serverJson);
 		}
+	}
+
+	public static Calendar getModificationTimeStamp(String time){
+		if (time != null) {
+			Calendar cal = Calendar.getInstance();
+			String year = time.substring(0, 4); // 2018
+			String month = time.substring(4, 6); // 01
+			String day = time.substring(6, 8);
+			String hour = time.substring(8, 10);
+			String minute = time.substring(10, 12);
+			String second = time.substring(12, 14);
+			cal.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day), Integer.parseInt(hour),
+					Integer.parseInt(minute), Integer.parseInt(second));
+			return cal;
+		}
+		return null;
 	}
 }

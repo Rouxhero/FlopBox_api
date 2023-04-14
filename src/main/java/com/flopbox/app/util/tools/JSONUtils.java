@@ -59,19 +59,7 @@ public class JSONUtils {
 			String uniqueID = FTPUtils.generateUniqueID(root, file);
 
 			String date = client.getModificationTime(FTPUtils.decode_path(uniqueID));
-			if (date != null) {
-				Calendar cal = Calendar.getInstance();
-				String year = date.substring(0, 4); // 2018
-				String month = date.substring(4, 6); // 01
-				String day = date.substring(6, 8);
-				String hour = date.substring(8, 10);
-				String minute = date.substring(10, 12);
-				String second = date.substring(12, 14);
-				System.out.println(year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second);
-				cal.set(Integer.parseInt(year), Integer.parseInt(month)-1, Integer.parseInt(day), Integer.parseInt(hour),
-						Integer.parseInt(minute), Integer.parseInt(second));
-				file.setTimestamp(cal);
-			}
+			file.setTimestamp(ServerUtils.getModificationTimeStamp(date));
 			extract_contentJson(jsonArray, file, uniqueID);
 		}
 		jsonObject.add("content", jsonArray);

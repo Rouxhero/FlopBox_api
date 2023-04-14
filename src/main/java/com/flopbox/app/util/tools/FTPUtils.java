@@ -240,13 +240,13 @@ public class FTPUtils {
 		if (!client.storeFile(fileDetails.getFileName(), fileContent))
 			throw new FTPException(
 					"Failed to upload file " + fileDetails.getFileName() + " => " + client.getReplyString());
-		return client.getModificationTime(fileDetails.getFileName());
+		return ServerUtils.getModificationTimeStamp(client.getModificationTime(fileDetails.getFileName())).getTimeInMillis()+"";
 	}
 
 	public static String overrideFile(FTPClient client, InputStream fileContent, FormDataContentDisposition fileDetails, String path) throws FTPException, IOException {
 		if (!client.storeFile(path, fileContent))
 			throw new FTPException(
 					"Failed to upload file " + path + " => " + client.getReplyString());
-		return client.getModificationTime(fileDetails.getFileName());
+		return ServerUtils.getModificationTimeStamp(client.getModificationTime(fileDetails.getFileName())).getTimeInMillis()+"";
 	}
 }
