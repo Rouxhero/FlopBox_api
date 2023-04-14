@@ -190,6 +190,19 @@ public class ContentController extends AbstractController {
 			response.setContent(e.getMessage());
 		}
 		return response;
+	}public WebResponse uploadFolder(WebRequest request) {
+		WebResponse response = new WebResponse();
+		Logs.display("Folder uploaded : " + FTPUtils.decode_path(request.get("fid")));
+		try {
+			FTPClient client = FTPUtils.init_auth(request);
+			response.setContent(FTPUtils.overrideFolder(client, request.get("name"),request.get("fid")));
+			response.setStatus(Response.Status.OK);
+			client.disconnect();
+		} catch (IOException | FTPException e) {
+			response.setStatus(Response.Status.INTERNAL_SERVER_ERROR);
+			response.setContent(e.getMessage());
+		}
+		return response;
 	}
 
 }

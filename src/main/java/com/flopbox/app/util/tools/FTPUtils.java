@@ -48,9 +48,11 @@ public class FTPUtils {
 	 * @throws IOException
 	 * @throws FTPException
 	 */
-	public static void createFolder(WebRequest request, FTPClient client) throws IOException, FTPException {
+	public static String createFolder(WebRequest request, FTPClient client) throws IOException, FTPException {
 		if (!client.makeDirectory(request.get("name")))
 			throw new FTPException("Failed to create folder " + request.get("name") + " => " + client.getReplyString());
+		return ServerUtils.getModificationTimeStamp(client.getModificationTime(request.get("name"))).getTimeInMillis()+"";
+
 	}
 
 	/**
@@ -248,5 +250,19 @@ public class FTPUtils {
 			throw new FTPException(
 					"Failed to upload file " + path + " => " + client.getReplyString());
 		return ServerUtils.getModificationTimeStamp(client.getModificationTime(fileDetails.getFileName())).getTimeInMillis()+"";
+	}
+
+	public static String overrideFolder(FTPClient client, String name, String fid) throws FTPException, IOException {
+		String path = decode_path(fid);
+		String[] split = path.split("/");
+		String oldName = split[split.length - 1];
+		split[split.length - 1] = "";
+		path = String.join("/", split);
+		System.out.printf("Rename  %s to %s in %s", oldName, name, path);
+		client.changeWorkingDirectory(path);
+		if (!client.rename(oldName, name))
+			throw new FTPException("Failed to rename file " + path + " => " + client.getReplyString());
+
+		return ServerUtils.getModificationTimeStamp(client.getModificationTime(path+name)).getTimeInMillis()+"";
 	}
 }
