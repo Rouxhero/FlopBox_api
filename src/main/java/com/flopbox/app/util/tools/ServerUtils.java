@@ -147,6 +147,6 @@ public class ServerUtils {
 					Integer.parseInt(minute), Integer.parseInt(second));
 			return cal;
 		}
-		return null;
+	return Calendar.getInstance();
 	}
 }
