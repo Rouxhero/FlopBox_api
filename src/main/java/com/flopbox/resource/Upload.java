@@ -2,18 +2,13 @@ package com.flopbox.resource;
 
 import java.io.InputStream;
 
+import jakarta.ws.rs.*;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import com.flopbox.app.controller.core.ControllerFactory;
 import com.flopbox.app.util.web.WebRequest;
 
-import jakarta.ws.rs.BeanParam;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -46,7 +41,7 @@ public class Upload extends AbstractResources {
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response create(@BeanParam WebRequest request, @FormDataParam("file") InputStream uploadedInputStream,
-			@FormDataParam("file") FormDataContentDisposition fileDetails, @QueryParam("name") String name)
+			@FormDataParam("file") FormDataContentDisposition fileDetails, @FormParam("name") String name)
 			throws Exception {
 		request.read();
 		request.addFile(uploadedInputStream, fileDetails);
@@ -71,7 +66,7 @@ public class Upload extends AbstractResources {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createOn(@BeanParam WebRequest request, @FormDataParam("file") InputStream uploadedInputStream,
-			@FormDataParam("file") FormDataContentDisposition fileDetails, @QueryParam("name") String name)
+			@FormDataParam("file") FormDataContentDisposition fileDetails, @FormParam("name") String name)
 			throws Exception {
 		request.read();
 		request.addFile(uploadedInputStream, fileDetails);
