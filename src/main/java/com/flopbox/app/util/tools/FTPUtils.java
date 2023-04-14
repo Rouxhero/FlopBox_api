@@ -12,7 +12,6 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 import com.flopbox.app.util.exception.FTPException;
-import com.flopbox.app.util.server.ServerCache;
 import com.flopbox.app.util.web.WebRequest;
 import com.flopbox.app.util.web.WebResponse;
 
@@ -232,19 +231,22 @@ public class FTPUtils {
 	 * @param client      client FTP
 	 * @param fileContent Stream avec le contenu du fichier
 	 * @param fileDetails détails du fichier
+	 * @return
 	 * @throws IOException
 	 * @throws FTPException
 	 */
-	public static void uploadFile(FTPClient client, InputStream fileContent, FormDataContentDisposition fileDetails)
+	public static String uploadFile(FTPClient client, InputStream fileContent, FormDataContentDisposition fileDetails)
 			throws IOException, FTPException {
 		if (!client.storeFile(fileDetails.getFileName(), fileContent))
 			throw new FTPException(
 					"Failed to upload file " + fileDetails.getFileName() + " => " + client.getReplyString());
+		return client.getModificationTime(fileDetails.getFileName());
 	}
 
-	public static void overrideFile(FTPClient client, InputStream fileContent, FormDataContentDisposition fileDetails, String path) throws FTPException, IOException {
+	public static String overrideFile(FTPClient client, InputStream fileContent, FormDataContentDisposition fileDetails, String path) throws FTPException, IOException {
 		if (!client.storeFile(path, fileContent))
 			throw new FTPException(
 					"Failed to upload file " + path + " => " + client.getReplyString());
+		return client.getModificationTime(fileDetails.getFileName());
 	}
 }

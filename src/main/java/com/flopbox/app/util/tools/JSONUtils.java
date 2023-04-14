@@ -84,6 +84,7 @@ public class JSONUtils {
 			JsonArray jsonArray = new JsonArray();
 			for (String value : res.get(key)) {
 				JsonObject jsonObject1 = new JsonObject();
+
 				value = value.replaceAll("//","/");
 				String uniqueID = Base64.getEncoder().encodeToString(value.getBytes());
 				jsonObject1.addProperty("path", value);

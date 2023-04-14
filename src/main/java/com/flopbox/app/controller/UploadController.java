@@ -57,7 +57,7 @@ public class UploadController extends AbstractController {
 			FTPClient client = FTPUtils.init_auth(request);
 			FTPUtils.changeDirectory(request, client);
 			client.setFileType(FTP.BINARY_FILE_TYPE);
-			FTPUtils.uploadFile(client,fileContent,fileDetails);
+			response.setContent(FTPUtils.uploadFile(client,fileContent,fileDetails));
 			response.setStatus(Response.Status.OK);
 			client.disconnect();
 		} catch (IOException | FTPException e) {

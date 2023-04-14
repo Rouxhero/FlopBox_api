@@ -182,7 +182,7 @@ public class ContentController extends AbstractController {
 		Logs.display("File uploaded : " + FTPUtils.decode_path(request.get("fid")));
 		try {
 			FTPClient client = FTPUtils.init_auth(request);
-			FTPUtils.overrideFile(client, request.getFile(), request.getFileDetails(),FTPUtils.decode_path(request.get("fid")));
+			response.setContent(FTPUtils.overrideFile(client, request.getFile(), request.getFileDetails(),FTPUtils.decode_path(request.get("fid"))));
 			response.setStatus(Response.Status.OK);
 			client.disconnect();
 		} catch (IOException | FTPException e) {
